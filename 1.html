@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <title>רשימת משימות מקוננות עם עיצוב מדליק (RTL)</title>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <style>
+    .container {
+
+    }
+
+    ul.task-list {
+      list-style-type: none;
+    }
+
+    ul.task-list li {
+      margin-bottom: 10px;
+    }
+
+    ul.sub-task-list {
+      margin-right: 56px;
+    }
+
+    ul.sub-sub-task-list {
+      margin-right: 70px;
+    }
+  </style>
+</head>
+<body>
+<button onclick="downloadToExcel()">Download to Excel</button> <div class="container"> <div class="card"> <div class="card-header bg-dark text-white"> <h4 class="mb-0">רשימת משימות מקוננות</h4> </div> <div class="card-body"> <ul class="task-list" dir="rtl" id="taskList"> <li>משימה 1: פרו-בורדינג <ul class="sub-task-list"> <li>תת-משימה 1.1: שליחת דוא"ל ברכה</li> <li>תת-משימה 1.2: שיתוף מסמכים וטפסים לפרו-בורדינג</li> <li>תת-משימה 1.3: מתן מידע על מדיניות והליך החברה</li> </ul> </li>
+      <li>משימה 2: הקמת חשבון למידה ב - Microsoft Learn, מסירת דרישות למידה עצמית לפי תיאור התפקיד</li>
+    
+      <li>משימה 3: התמודדות ראשונה
+        <ul class="sub-task-list">
+          <li>תת-משימה 3.1: ברכה והיכרות</li>
+          <li>תת-משימה 3.2: ספק סקירה על תרבות וערכים של החברה</li>
+          <li>תת-משימה 3.3: סקירת ספר העובד והמדיניות</li>
+          <li>תת-משימה 3.4: הסבר על לוח זמנים ומדיניות נוכחות</li>
+        </ul>
+      </li>
+    
+      <li>משימה 4: מעקב שוטף אחר התקדמות בלמידה ותמיכה</li>
+    
+      <li>משימה 5: הגדרת מרחב עבודה ומשאבים
+        <ul class="sub-task-list">
+          <li>תת-משימה 5.1: התקנת מחשב, תוכנות וגישות</li>
+          <li>תת-משימה 5.2: ספק ציוד וציוד נדרש</li>
+          <li>תת-משימה 5.3: הסבר על הכלים והמשאבים הזמינים</li>
+          <li>תת-משימה 5.4: טיפול בתמיכה טכנית ובצוות העזר</li>
+        </ul>
+      </li>
+      
+      <li>משימה 6: שילוב בצוות
+        <ul class="sub-task-list">
+          <li>תת-משימה 6.1: היכרות עם חברי הצוות</li>
+          <li>תת-משימה 6.2: קביעת פגישות צוות וסשנים שיתופיים</li>
+          <li>תת-משימה 6.3: הסבר על תפקידים ואחריות בצוות</li>
+          <li>תת-משימה 6.4: עידוד יצירת רשתות ובניית יחסים</li>
+        </ul>
+      </li>
+      
+      <li>משימה 7: תמיכה ומשוב רציף
+        <ul class="sub-task-list">
+          <li>תת-משימה 7.1: בדיקה תקופתית על התקדמות ושלב השתלבות</li>
+          <li>תת-משימה 7.2: מתן הזדמנויות למשוב ושאלות</li>
+          <li>תת-משימה 7.3: הצעת משאבים נוספים להכשרה ופיתוח</li>
+          <li>תת-משימה 7.4: טיפול באתגרים ותחנות מעקב</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+    <script>
+    function downloadToExcel() {
+      const taskList = document.getElementById("taskList");
+      const data = getDataFromTaskList(taskList);
+      const workbook = XLSX.utils.book_new();
+      const worksheet = XLSX.utils.aoa_to_sheet(data);
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Nested Task List");
+      const excelFile = XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+      const fileName = "nested_task_list.xlsx";
+      const excelBlob = new Blob([s2ab(excelFile)], { type: "application/octet-stream" });
+
+      if (navigator.msSaveBlob) {
+        navigator.msSaveBlob(excelBlob, fileName);
+      } else {
+        const downloadLink = document.createElement("a");
+        downloadLink.href = window.URL.createObjectURL(excelBlob);
+        downloadLink.download = fileName;
+        downloadLink.click();
+      }
+    }
+
+    function getDataFromTaskList(element) {
+      const data = [];
+      const items = element.children;
+
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        const text = item.firstChild.textContent.trim();
+        const subList = item.querySelector("ul");
+
+        if (subList) {
+          const subData = getDataFromTaskList(subList);
+          data.push([text, ...subData]);
+        } else {
+          data.push([text]);
+        }
+      }
+
+      return data;
+    }
+
+    function s2ab(s) {
+      const buf = new ArrayBuffer(s.length);
+      const view = new Uint8Array(buf);
+      for (let i = 0; i < s.length; i++) {
+        view[i] = s.charCodeAt(i) & 0xFF;
+      }
+      return buf;
+    }
+  </script>
+</body>
+</html>
