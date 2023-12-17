@@ -4,6 +4,47 @@
         <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
         <style>
+                body {
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        color: #333;
+        margin: 0 0 10px;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0 0 0 20px;
+    }
+
+    li {
+        list-style-type: disc;
+        margin-bottom: 5px;
+    }
+
+    .category {
+        border-bottom: 2px solid #333;
+        padding-bottom: 5px;
+    }
+
+    .category-title {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .item-link {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .item-link:hover {
+        text-decoration: underline;
+    }
                         table {
                 border-collapse: collapse;
                 width: 100%;
@@ -576,93 +617,83 @@ Areal Alien ❥ 雷克斯
     <!-- Main -->
     <main id="main" class="flexbox-col" dir="rtl">
         <!--<button onclick="downloadToExcel()">Download to Excel</button>-->
-        <h2 style="text-align: center;">אפשרויות למערכת ניהול ידע באמצעות כלי Microsoft</h2>
-        <table>
-            <tr>
-                <th>כלי</th>
-                <th>יתרונות</th>
-                <th>חסרונות</th>
-            </tr>
-            <tr>
-                <td>SharePoint</td>
-                <td>
-                    <ol>
-                        <li>משולב היטב עם יישומי Microsoft Office</li>
-                        <li>תהליכי עבודה ואישורים ניתנים להתאמה אישית</li>
-                        <li>ניהול גרסאות ואימות נכנס-יוצא</li>
-                        <li>תמיכה בטקסונומיה ומטא-נתונים לארגון תכנים</li>
-                    </ol>
-                </td>
-                <td>
-                    <ol>
-                        <li>דורש התקנה ותחזוקה</li>
-                        <li>למידת קווים גבוהה להתאמה מתקדמת</li>
-                        <li>בעיות ביצועים אפשריות עם גודל קבצים גדול או שימוש רב</li>
-                    </ol>
-                </td>
-            </tr>
-            <tr>
-                <td>OneNote</td>
-                <td>
-                    <ol>
-                        <li>ממשק פשוט של מחברות לשילוב טקסט, תמונות וכד'</li>
-                        <li>סנכרון בין התקנים באמצעות OneDrive</li>
-                        <li>חיפוש משולב בין פרקים ועמודים</li>
-                    </ol>
-                </td>
-                <td>
-                    <ol>
-                        <li>פחות מבני מאשר SharePoint</li>
-                        <li>לא אידיאלי עבור תיעוד מורכב או תהליכי אישור</li>
-                    </ol>
-                </td>
-            </tr>
-            <tr>
-                <td>Microsoft Teams</td>
-                <td>
-                    <ol>
-                        <li>שיחה נבנית, שיחת וידאו ושיתוף פעולה מובנים</li>
-                        <li>צרפת קבצים, קישור ל-SharePoint והוספת טאבים</li>
-                    </ol>
-                </td>
-                <td>
-                    <ol>
-                        <li>מתמקד יותר בתקשורת מאשר במקור מרכזי</li>
-                        <li>עלויות רישוי נוספות לעומת SharePoint</li>
-                    </ol>
-                </td>
-            </tr>
-            <tr>
-                <td>OneDrive</td>
-                <td>
-                    <ol>
-                        <li>שיתוף קבצים פשוט באמצעות אחסון בענן</li>
-                        <li>סנכרון עם ה-Desktop לגישה ללא חיבור</li>
-                    </ol>
-                </td>
-                <td>
-                    <ol>
-                        <li>אין חיפוש משולב או טקסונומיה</li>
-                        <li>תמיכה מינימלית במבנה או מטא-נתונים</li>
-                    </ol>
-                </td>
-            </tr>
-            <tr>
-                <td>Yammer</td>
-                <td>
-                    <ol>
-                        <li>פונקציונליות רשת חברתית לדיונים</li>
-                        <li>משתלב עם קבוצות Office 365</li>
-                    </ol>
-                </td>
-                <td>
-                    <ol>
-                        <li>פחות מבנה מאשר SharePoint</li>
-                        <li>עלויות רישוי נוספות</li>
-                    </ol>
-                </td>
-            </tr>
-        </table>
+        <h2 class="category">Sales:</h2>
+        <ul>
+            <li class="item">Accounts</li>
+            <li class="item">Contacts</li>
+            <li class="item">Leads</li>
+            <li class="item">Opportunities</li>
+            <li class="item">Quotes</li>
+            <li class="item">Orders</li>
+            <li class="item">Invoices</li>
+            <li class="item">Products</li>
+        </ul>
+        
+        <h2 class="category">Marketing:</h2>
+        <ul>
+            <li class="item">Campaigns</li>
+            <li class="item">Marketing Lists</li>
+            <li class="item">Segments</li>
+        </ul>
+        
+        <h2 class="category">Customer Service:</h2>
+        <ul>
+            <li class="item">Cases</li>
+            <li class="item">Knowledge Base</li>
+            <li class="item">Queues</li>
+        </ul>
+        
+        <h2 class="category">Field Service:</h2>
+        <ul>
+            <li class="item">Work Orders</li>
+            <li class="item">Service Tasks</li>
+            <li class="item">Resource Scheduling</li>
+        </ul>
+        
+        <h2 class="category">Customization and Configuration:</h2>
+        <ul>
+            <li class="item">Custom Entities</li>
+            <li class="item">Fields</li>
+            <li class="item">Relationships</li>
+            <li class="item">Business Rules</li>
+            <li class="item">Screens</li>
+            <li class="item">Forms &amp; Views</li>
+            <li class="item">User Interface</li>
+            <li class="item">Business Processes</li>
+        </ul>
+        
+        <h2 class="category">Data Management:</h2>
+        <ul>
+            <li class="item">Data Importing</li>
+            <li class="item">Data Exporting</li>
+            <li class="item">Data Archiving</li>
+        </ul>
+        
+        <h2 class="category">Administration:</h2>
+        <ul>
+            <li class="item">Security Roles</li>
+            <li class="item">Users &amp; Teams</li>
+            <li class="item">Licensing</li>
+            <li class="item">System Jobs</li>
+            <li class="item">Sandbox Environments</li>
+            <li class="item">Production Deployment</li>
+            <li class="item">Upgrades</li>
+        </ul>
+        
+        <h2 class="category">Reporting and Analytics:</h2>
+        <ul>
+            <li class="item">Dashboards</li>
+            <li class="item">Charts</li>
+            <li class="item">Filters</li>
+            <li class="item">Groups</li>
+        </ul>
+        
+        <h2 class="category">Development:</h2>
+        <ul>
+            <li class="item">Plug-ins</li>
+            <li class="item">Web Resources</li>
+            <li class="item">Early Concepts</li>
+        </ul>
         <script>
             function downloadToExcel() {
                 const taskList = document.getElementById("taskList");
